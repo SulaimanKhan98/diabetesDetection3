@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'patientInfo',
     'adminInfo',
+    'resources',
+    'notifications',
+    'socialMedia',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

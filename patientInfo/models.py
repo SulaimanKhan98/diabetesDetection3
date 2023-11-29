@@ -1,7 +1,15 @@
+# models.py in patientInfo app
+
 from django.db import models
 
+class PatientDetails(models.Model):
+    patient_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    cnic = models.BigIntegerField()
+    number = models.BigIntegerField()
+
 class PatientHistory(models.Model):
-    
+    patient_details = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
     age = models.IntegerField()
     glucose = models.FloatField()
     blood_pressure = models.FloatField()
@@ -10,17 +18,3 @@ class PatientHistory(models.Model):
     bmi = models.FloatField()
     diabetes_pedigree_function = models.FloatField()
     prediction_result = models.BooleanField(null=True, blank=True)
-
-class PatientDetails(models.Model):
-
-    patient_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    cnic = models.BigIntegerField()
-    number = models.BigIntegerField()
-
-class Doctor(models.Model):
-
-   
-    name = models.CharField(max_length=255)
-    cnic = models.BigIntegerField()
-    number = models.BigIntegerField()
