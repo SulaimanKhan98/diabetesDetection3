@@ -20,3 +20,4 @@ class PatientData(models.Model):
     diabetes_pedigree_function = models.FloatField()
     prediction_result = models.BooleanField(null=True, blank=True)
     age = models.IntegerField()
+
