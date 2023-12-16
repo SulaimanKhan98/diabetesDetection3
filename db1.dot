@@ -1,7 +1,7 @@
 digraph model_graph {
   // Dotfile by Django-Extensions graph_models
-  // Created: 2023-11-28 18:22
-  // Cli Options: --all -o my_models.dot
+  // Created: 2023-12-11 16:20
+  // Cli Options: --all -o db1.dot
 
   fontname = "Roboto"
   fontsize = 8
@@ -475,6 +475,14 @@ digraph model_graph {
   
   
     <TR><TD ALIGN="LEFT" BORDER="0">
+    <FONT FACE="Roboto">age</FONT>
+    </TD><TD ALIGN="LEFT">
+    <FONT FACE="Roboto">IntegerField</FONT>
+    </TD></TR>
+  
+  
+  
+    <TR><TD ALIGN="LEFT" BORDER="0">
     <FONT FACE="Roboto">cnic</FONT>
     </TD><TD ALIGN="LEFT">
     <FONT FACE="Roboto">BigIntegerField</FONT>
@@ -500,11 +508,11 @@ digraph model_graph {
     </TABLE>
     >]
 
-  patientInfo_models_PatientHistory [label=<
+  patientInfo_models_PatientData [label=<
     <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
     <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
     <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
-    PatientHistory
+    PatientData
     </B></FONT></TD></TR>
   
   
@@ -593,18 +601,18 @@ digraph model_graph {
 
 
 
-  adminInfo_models_AdminDetails [label=<
+  resources_models_Category [label=<
     <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
     <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
     <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
-    AdminDetails
+    Category
     </B></FONT></TD></TR>
   
   
     <TR><TD ALIGN="LEFT" BORDER="0">
-    <FONT FACE="Roboto"><B>admin_id</B></FONT>
+    <FONT FACE="Roboto"><B>id</B></FONT>
     </TD><TD ALIGN="LEFT">
-    <FONT FACE="Roboto"><B>AutoField</B></FONT>
+    <FONT FACE="Roboto"><B>BigAutoField</B></FONT>
     </TD></TR>
   
   
@@ -618,31 +626,20 @@ digraph model_graph {
   
   
     <TR><TD ALIGN="LEFT" BORDER="0">
-    <FONT FACE="Roboto">password</FONT>
+    <FONT FACE="Roboto">slug</FONT>
     </TD><TD ALIGN="LEFT">
-    <FONT FACE="Roboto">CharField</FONT>
-    </TD></TR>
-  
-  
-  
-    <TR><TD ALIGN="LEFT" BORDER="0">
-    <FONT FACE="Roboto">username</FONT>
-    </TD><TD ALIGN="LEFT">
-    <FONT FACE="Roboto">CharField</FONT>
+    <FONT FACE="Roboto">SlugField</FONT>
     </TD></TR>
   
   
     </TABLE>
     >]
 
-
-
-
-  resources_models_DiabetesResource [label=<
+  resources_models_BlogPost [label=<
     <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
     <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
     <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
-    DiabetesResource
+    BlogPost
     </B></FONT></TD></TR>
   
   
@@ -650,6 +647,14 @@ digraph model_graph {
     <FONT FACE="Roboto"><B>id</B></FONT>
     </TD><TD ALIGN="LEFT">
     <FONT FACE="Roboto"><B>BigAutoField</B></FONT>
+    </TD></TR>
+  
+  
+  
+    <TR><TD ALIGN="LEFT" BORDER="0">
+    <FONT FACE="Roboto"><B>author</B></FONT>
+    </TD><TD ALIGN="LEFT">
+    <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
     </TD></TR>
   
   
@@ -666,6 +671,14 @@ digraph model_graph {
     <FONT COLOR="#7B7B7B" FACE="Roboto">published_date</FONT>
     </TD><TD ALIGN="LEFT">
     <FONT COLOR="#7B7B7B" FACE="Roboto">DateTimeField</FONT>
+    </TD></TR>
+  
+  
+  
+    <TR><TD ALIGN="LEFT" BORDER="0">
+    <FONT FACE="Roboto">slug</FONT>
+    </TD><TD ALIGN="LEFT">
+    <FONT FACE="Roboto">SlugField</FONT>
     </TD></TR>
   
   
@@ -871,10 +884,15 @@ digraph model_graph {
   [label=" abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
 
 
-  patientInfo_models_PatientHistory -> patientInfo_models_PatientDetails
-  [label=" patient_details (patienthistory)"] [arrowhead=none, arrowtail=dot, dir=both];
+  patientInfo_models_PatientData -> patientInfo_models_PatientDetails
+  [label=" patient_details (patientdata)"] [arrowhead=none, arrowtail=dot, dir=both];
 
 
+  resources_models_BlogPost -> django_contrib_auth_models_User
+  [label=" author (blogpost)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  resources_models_BlogPost -> resources_models_Category
+  [label=" categories (blogpost)"] [arrowhead=dot arrowtail=dot, dir=both];
 
 
 
